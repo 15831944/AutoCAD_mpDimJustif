@@ -7,14 +7,14 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
-using ModPlus;
-using mpMsg;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.GraphicsInterface;
-using mpSettings;
+using ModPlusAPI;
+using ModPlusAPI.Windows;
+using ModPlusAPI.Windows.Helpers;
 
 namespace mpDimJustif
 {
@@ -26,12 +26,7 @@ namespace mpDimJustif
         public MpDimJustif()
         {
             InitializeComponent();
-            MpWindowHelpers.OnWindowStartUp(
-                this,
-                MpSettings.GetValue("Settings", "MainSet", "Theme"),
-                MpSettings.GetValue("Settings", "MainSet", "AccentColor"),
-                MpSettings.GetValue("Settings", "MainSet", "BordersType")
-                );
+            this.OnWindowStartUp();
         }
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -82,7 +77,7 @@ namespace mpDimJustif
                         {
                             return;
                         }
-                        var fPt = MpCadHelpers.UcsToWcs(ppr.Value); //first point to WCS
+                        var fPt = ModPlus.Helpers.AutocadHelpers.UcsToWcs(ppr.Value); //first point to WCS
                         var i = 0;
                         var pts1 = new Point3dCollection(); // Колекция первых точек
                         var pts2 = new Point3dCollection(); // Колекция вторых точек
@@ -117,7 +112,7 @@ namespace mpDimJustif
             } // try
             catch (System.Exception ex)
             {
-                MpExWin.Show(ex);
+                ExceptionBox.Show(ex);
             }
         }
         // Выравнивание размерных линий вдоль указанной прямой
@@ -155,7 +150,7 @@ namespace mpDimJustif
                         {
                             return;
                         }
-                        var fPt = MpCadHelpers.UcsToWcs(ppr.Value); //first point to WCS
+                        var fPt = ModPlus.Helpers.AutocadHelpers.UcsToWcs(ppr.Value); //first point to WCS
                         var i = 0;
                         var pts1 = new Point3dCollection(); // Колекция первых точек
                         var pts2 = new Point3dCollection(); // Колекция вторых точек
@@ -189,7 +184,7 @@ namespace mpDimJustif
             } // try
             catch (System.Exception ex)
             {
-                MpExWin.Show(ex);
+                ExceptionBox.Show(ex);
             }
         }
     }
@@ -200,6 +195,7 @@ namespace mpDimJustif
         [CommandMethod("ModPlus", "mpDimJustif", CommandFlags.Modal)]
         public void StartMpFormats()
         {
+            Statistic.SendCommandStarting(new Interface());
             if (_mpDimJustif == null)
             {
                 _mpDimJustif = new MpDimJustif();
@@ -290,10 +286,13 @@ namespace mpDimJustif
                     var lin1 = new Line(_ptsCol1[i], _ptsCol3[i]);
                     var lin2 = new Line(_ptsCol2[i], _ptsCol4[i]);
                     // Только для 2010 автокада!
-                    PlatformCompatibilityExtensionMethods.IntersectWith(lin1, _line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
-                    PlatformCompatibilityExtensionMethods.IntersectWith(lin2, _line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
-                    //lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, 0, 0);
-                    //lin2.IntersectWith(_line, Intersect.ExtendBoth, ppp, 0, 0);
+#if PCE
+                    lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+                    lin2.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+#else
+                    lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+                    lin2.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+#endif
                     if (ppp.Count > 0)
                     {
                         var vec1 = pts[0].GetVectorTo(ppp[0]);
@@ -380,8 +379,11 @@ namespace mpDimJustif
                 var ppp = new Point3dCollection();
                 var lin1 = new Line(_ptsCol1[i], _ptsCol3[i]);
                 // Только для 2010 автокада!
-                PlatformCompatibilityExtensionMethods.IntersectWith(lin1, _line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
-                //lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, 0, 0);
+#if  PCE
+               lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+#else
+                lin1.IntersectWith(_line, Intersect.ExtendBoth, ppp, IntPtr.Zero, IntPtr.Zero);
+#endif
                 if (ppp.Count > 0)
                 {
                     var vec1 = pts[2].GetVectorTo(ppp[0]);
@@ -399,6 +401,8 @@ namespace mpDimJustif
             return _currPoint.DistanceTo(_prevPoint) > 1e-6;
         }
     }// public class MpDimExtLineJustifJig : DrawJig
+
+#if PCE
     /// <summary>
     /// 
     /// Platform compatibility extension methods for 
@@ -409,7 +413,6 @@ namespace mpDimJustif
     /// on both 32 and 64 bit AutoCAD.
     /// 
     /// </summary>
-
     public static class PlatformCompatibilityExtensionMethods
     {
 
@@ -467,8 +470,8 @@ namespace mpDimJustif
             Type[] types2 = null;
             if (IntPtr.Size > 4)
             {
-                types1 = new Type[] { typeof(Entity), typeof(Intersect), typeof(Point3dCollection), typeof(Int64), typeof(Int64) };
-                types2 = new Type[] { typeof(Entity), typeof(Intersect), typeof(Plane), typeof(Point3dCollection), typeof(Int64), typeof(Int64) };
+                types1 = new[] { typeof(Entity), typeof(Intersect), typeof(Point3dCollection), typeof(Int64), typeof(Int64) };
+                types2 = new[] { typeof(Entity), typeof(Intersect), typeof(Plane), typeof(Point3dCollection), typeof(Int64), typeof(Int64) };
             }
             else
             {
@@ -533,4 +536,5 @@ namespace mpDimJustif
 
 
     }
+#endif
 }
