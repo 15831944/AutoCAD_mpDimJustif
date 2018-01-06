@@ -18,11 +18,10 @@ using ModPlusAPI.Windows.Helpers;
 
 namespace mpDimJustif
 {
-    /// <summary>
-    /// Логика взаимодействия для MpFormats.xaml
-    /// </summary>
     public partial class MpDimJustif
     {
+        private const string LangItem = "mpDimJustif";
+
         public MpDimJustif()
         {
             InitializeComponent();
@@ -61,7 +60,7 @@ namespace mpDimJustif
                     {
                         var pso = new PromptSelectionOptions
                         {
-                            MessageForAdding = "\nВыберите размеры для выравнивания выносных линий"
+                            MessageForAdding = "\n" + ModPlusAPI.Language.GetItem(LangItem, "msg1")
                         };
 
                         var sf = new SelectionFilter(
@@ -71,7 +70,7 @@ namespace mpDimJustif
                         {
                             return;
                         }
-                        var ppo = new PromptPointOptions("\nПервая точка линии выравнивания: ");
+                        var ppo = new PromptPointOptions("\n" + ModPlusAPI.Language.GetItem(LangItem, "msg2"));
                         var ppr = ed.GetPoint(ppo);
                         if (ppr.Status != PromptStatus.OK)
                         {
@@ -134,7 +133,7 @@ namespace mpDimJustif
                     {
                         var pso = new PromptSelectionOptions
                         {
-                            MessageForAdding = "\nВыберите размеры для выравнивания размерных линий"
+                            MessageForAdding = "\n" + ModPlusAPI.Language.GetItem(LangItem, "msg3")
                         };
 
                         var sf = new SelectionFilter(
@@ -144,7 +143,7 @@ namespace mpDimJustif
                         {
                             return;
                         }
-                        var ppo = new PromptPointOptions("\nПервая точка линии выравнивания: ");
+                        var ppo = new PromptPointOptions("\n" + ModPlusAPI.Language.GetItem(LangItem, "msg2"));
                         var ppr = ed.GetPoint(ppo);
                         if (ppr.Status != PromptStatus.OK)
                         {
@@ -207,7 +206,8 @@ namespace mpDimJustif
             else
                 AcApp.ShowModelessWindow(AcApp.MainWindow.Handle, _mpDimJustif);
         }
-        void win_Closed(object sender, EventArgs e)
+
+        private void win_Closed(object sender, EventArgs e)
         {
             _mpDimJustif = null;
             Autodesk.AutoCAD.Internal.Utils.SetFocusToDwgView();
@@ -216,6 +216,8 @@ namespace mpDimJustif
     // Jig
     public class MpDimExtLineJustifJig : DrawJig
     {
+        private const string LangItem = "mpDimJustif";
+
         private Point3d _prevPoint; // Предыдущая точка
         private Point3d _currPoint; // Нинешняя точка
         private Point3d _startPoint;
@@ -250,7 +252,7 @@ namespace mpDimJustif
         }
         protected override SamplerStatus Sampler(JigPrompts prompts)
         {
-            var jppo = new JigPromptPointOptions("\nВторая точка линии выравнивания: ")
+            var jppo = new JigPromptPointOptions("\n" + Language.GetItem(LangItem, "msg4"))
             {
                 BasePoint = _line.StartPoint,
                 UseBasePoint = true,
@@ -314,6 +316,8 @@ namespace mpDimJustif
     }// public class MpDimExtLineJustifJig : DrawJig
     public class MpDimLineJustifJig : DrawJig
     {
+        private const string LangItem = "mpDimJustif";
+
         private Point3d _prevPoint; // Предыдущая точка
         private Point3d _currPoint; // Нинешняя точка
         private Point3d _startPoint;
@@ -344,7 +348,7 @@ namespace mpDimJustif
         }
         protected override SamplerStatus Sampler(JigPrompts prompts)
         {
-            var jppo = new JigPromptPointOptions("\nВторая точка линии выравнивания: ")
+            var jppo = new JigPromptPointOptions("\n" + Language.GetItem(LangItem, "msg4"))
             {
                 BasePoint = _line.StartPoint,
                 UseBasePoint = true,

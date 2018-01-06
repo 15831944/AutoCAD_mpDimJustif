@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ModPlusAPI.Interfaces;
 
 namespace mpDimJustif
@@ -8,7 +9,9 @@ namespace mpDimJustif
         public SupportedProduct SupportedProduct => SupportedProduct.AutoCAD;
         public string Name => "mpDimJustif";
         public string AvailProductExternalVersion => "2013";
-        public string ClassName => string.Empty;
+        public string FullClassName => string.Empty;
+        public string AppFullClassName => string.Empty;
+        public Guid AddInId => Guid.Empty;
         public string LName => "Выравнивание размеров";
         public string Description => "Выравнивание выносных или размерных линий вдоль указанной прямой";
         public string Author => "Пекшев Александр aka Modis";
