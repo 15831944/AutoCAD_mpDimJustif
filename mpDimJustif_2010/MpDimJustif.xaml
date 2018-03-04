@@ -1,36 +1,27 @@
-﻿<controls:MetroWindow x:Class="mpDimJustif.MpDimJustif"
+﻿<mpc:BaseMetroWindow x:Class="mpDimJustif.MpDimJustif"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False" ShowMinButton="False"
+                      xmlns:mpc="clr-namespace:ModPlusAPI.Windows.Mpc;assembly=ModPlusAPI"
+                      SizeToContent="WidthAndHeight"
                       PreviewKeyDown="Window_PreviewKeyDown"
                       MouseEnter="MetroWindow_MouseEnter" MouseLeave="MetroWindow_MouseLeave"
-                      ResizeMode="NoResize"  ShowTitleBar="False"
-                      WindowStartupLocation="CenterScreen">
+                      ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/ModPlusAPI;component/Windows/WinResources/Styles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusAPI;component/Windows/WinResources/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mpDimJustif"></XmlDataProvider>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="5">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="16" Grid.Row="0" Margin="0,0,20,5" Text="{Binding Source={StaticResource Lang}, XPath=h1}"></TextBlock>
-        <Button Grid.Row="1" Margin="2" Name="BtDimExtLineJustif"
+        <Button Grid.Row="0" Margin="2" Name="BtDimExtLineJustif"
                 HorizontalContentAlignment="Left"
                 HorizontalAlignment="Stretch"
                 Click="BtDimExtLineJustif_OnClick">
@@ -49,7 +40,7 @@
                            Text="{Binding Source={StaticResource Lang}, XPath=h2}"></TextBlock>
             </Grid>
         </Button>
-        <Button Grid.Row="2" Margin="2" Name="BtDimLineJustif"
+        <Button Grid.Row="1" Margin="2" Name="BtDimLineJustif"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left" Click="BtDimLineJustif_OnClick">
             <Grid>
@@ -67,4 +58,5 @@
             </Grid>
         </Button>
     </Grid>
-</controls:MetroWindow>
+</mpc:BaseMetroWindow>
+

@@ -14,7 +14,6 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.GraphicsInterface;
 using ModPlusAPI;
 using ModPlusAPI.Windows;
-using ModPlusAPI.Windows.Helpers;
 
 namespace mpDimJustif
 {
@@ -25,7 +24,7 @@ namespace mpDimJustif
         public MpDimJustif()
         {
             InitializeComponent();
-            this.OnWindowStartUp();
+            Title = ModPlusAPI.Language.GetItem(LangItem, "h1");
         }
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
