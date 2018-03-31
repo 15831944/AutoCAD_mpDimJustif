@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2010", "mpDimJustif_2010\mpDimJustif_2010.csproj", "{D9A5C78A-1329-4644-A82A-C7A3CBA98E5B}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2017", "mpDimJustif_2017\mpDimJustif_2017.csproj", "{08CF3B01-38B5-4F0D-9D7A-445EDB2D3456}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2018", "mpDimJustif_2018\mpDimJustif_2018.csproj", "{6ABE11D2-51DB-4673-8C5A-0374E8E7DF0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2019", "mpDimJustif_2019\mpDimJustif_2019.csproj", "{0E058214-3A95-46B2-AA11-CAF167AA6635}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,8 +65,15 @@ Global
 		{6ABE11D2-51DB-4673-8C5A-0374E8E7DF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ABE11D2-51DB-4673-8C5A-0374E8E7DF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ABE11D2-51DB-4673-8C5A-0374E8E7DF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99A149FB-8CC1-42F1-91B6-FABCC6A3F19E}
 	EndGlobalSection
 EndGlobal
