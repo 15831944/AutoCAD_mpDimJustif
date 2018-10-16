@@ -1,9 +1,9 @@
-﻿<mpc:BaseMetroWindow x:Class="mpDimJustif.MpDimJustif"
+﻿<mps:ModPlusWindow x:Class="mpDimJustif.MpDimJustif"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:mpc="clr-namespace:ModPlusAPI.Windows.Mpc;assembly=ModPlusAPI"
+                      xmlns:mps="https://modplus.org/winfx/xaml/controls"
                       SizeToContent="WidthAndHeight"
                       PreviewKeyDown="Window_PreviewKeyDown"
                       MouseEnter="MetroWindow_MouseEnter" MouseLeave="MetroWindow_MouseLeave"
@@ -11,52 +11,57 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ModPlusAPI;component/Windows/WinResources/Styles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mpDimJustif"></XmlDataProvider>
+            <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mpDimJustif"
+                             IsAsynchronous="False"></XmlDataProvider>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Margin="2" Name="BtDimExtLineJustif"
-                HorizontalContentAlignment="Left"
+        <Button Grid.Row="0" Name="BtDimExtLineJustif"
+                Style="{DynamicResource ModPlusFlatButton}"
                 HorizontalAlignment="Stretch"
                 Click="BtDimExtLineJustif_OnClick">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" SharedSizeGroup="Text"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="1" Margin="2" Background="White" VerticalAlignment="Center"
+                <Border Grid.Column="0" Padding="1"  Background="White" VerticalAlignment="Center"
                         BorderBrush="{DynamicResource BlackBrush}" BorderThickness="1">
-                        <Image Source="Resources/MpDimExtLineJustif_32x32.png" Stretch="None"></Image>
-                    
+                        <Image Source="Resources/MpDimExtLineJustif_32x32.png" Stretch="None"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               RenderOptions.EdgeMode="Aliased"></Image>
                 </Border>
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           Margin="5"
+                           Margin="15 0"
                            Text="{Binding Source={StaticResource Lang}, XPath=h2}"></TextBlock>
             </Grid>
         </Button>
-        <Button Grid.Row="1" Margin="2" Name="BtDimLineJustif"
+        <Button Grid.Row="1"  Name="BtDimLineJustif"
                 HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Left" Click="BtDimLineJustif_OnClick">
+                Style="{DynamicResource ModPlusFlatButton}"
+                Click="BtDimLineJustif_OnClick">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" SharedSizeGroup="Text"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="1" Margin="2" Background="White" VerticalAlignment="Center"
+                <Border Grid.Column="0" Padding="1" Background="White" VerticalAlignment="Center"
                         BorderBrush="{DynamicResource BlackBrush}" BorderThickness="1">
-                        <Image Source="Resources/MpDimLineJustif_32x32.png" Stretch="None"></Image>
+                        <Image Source="Resources/MpDimLineJustif_32x32.png" Stretch="None"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               RenderOptions.EdgeMode="Aliased"></Image>
                 </Border>
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           Margin="5"
+                           Margin="15 0"
                            Text="{Binding Source={StaticResource Lang}, XPath=h3}"></TextBlock>
             </Grid>
         </Button>
     </Grid>
-</mpc:BaseMetroWindow>
+</mps:ModPlusWindow>
 
