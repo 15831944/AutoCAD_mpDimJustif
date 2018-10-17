@@ -61,32 +61,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\mpDimJustif_2013\DimExtLineJustifyJig.cs">
+      <Link>DimExtLineJustifyJig.cs</Link>
+    </Compile>
+    <Compile Include="..\mpDimJustif_2013\DimLineJustifyJig.cs">
+      <Link>DimLineJustifyJig.cs</Link>
+    </Compile>
+    <Compile Include="..\mpDimJustif_2013\Functions.cs">
+      <Link>Functions.cs</Link>
+    </Compile>
     <Compile Include="..\mpDimJustif_2013\MpDimJustif.xaml.cs">
       <Link>MpDimJustif.xaml.cs</Link>
       <DependentUpon>MpDimJustif.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\mpDimJustif_2013\MpDimJustifStart.cs">
+      <Link>MpDimJustifStart.cs</Link>
+    </Compile>
     <Compile Include="Interface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimExtLineJustif_16x16.png">
-      <Link>Resources\MpDimExtLineJustif_16x16.png</Link>
-    </Resource>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimExtLineJustif_32x32.png">
-      <Link>Resources\MpDimExtLineJustif_32x32.png</Link>
-    </Resource>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimJustif_16x16.png">
-      <Link>Resources\MpDimJustif_16x16.png</Link>
-    </Resource>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimJustif_32x32.png">
-      <Link>Resources\MpDimJustif_32x32.png</Link>
-    </Resource>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimLineJustif_16x16.png">
-      <Link>Resources\MpDimLineJustif_16x16.png</Link>
-    </Resource>
-    <Resource Include="..\mpDimJustif_2013\Resources\MpDimLineJustif_32x32.png">
-      <Link>Resources\MpDimLineJustif_32x32.png</Link>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\mpDimJustif_2013\MpDimJustif.xaml">
@@ -94,6 +86,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimExtLineJustif_32x32.png">
+      <Link>Resources\mpDimExtLineJustif_32x32.png</Link>
+    </Resource>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimJustif_16x16.png">
+      <Link>Resources\mpDimJustif_16x16.png</Link>
+    </Resource>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimJustif_16x16_dark.png">
+      <Link>Resources\mpDimJustif_16x16_dark.png</Link>
+    </Resource>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimJustif_32x32.png">
+      <Link>Resources\mpDimJustif_32x32.png</Link>
+    </Resource>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimJustif_32x32_dark.png">
+      <Link>Resources\mpDimJustif_32x32_dark.png</Link>
+    </Resource>
+    <Resource Include="..\mpDimJustif_2013\Resources\mpDimLineJustif_32x32.png">
+      <Link>Resources\mpDimLineJustif_32x32.png</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

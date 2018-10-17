@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:mps="https://modplus.org/winfx/xaml/controls"
                       SizeToContent="WidthAndHeight"
-                      PreviewKeyDown="Window_PreviewKeyDown"
                       MouseEnter="MetroWindow_MouseEnter" MouseLeave="MetroWindow_MouseLeave"
                       ResizeMode="NoResize">
     <Window.Resources>
@@ -31,7 +30,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*" SharedSizeGroup="Text"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="1"  Background="White" VerticalAlignment="Center"
+                <Border Grid.Column="0" Padding="4" Background="White" VerticalAlignment="Center"
                         BorderBrush="{DynamicResource BlackBrush}" BorderThickness="1">
                         <Image Source="Resources/MpDimExtLineJustif_32x32.png" Stretch="None"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
@@ -51,7 +50,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*" SharedSizeGroup="Text"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="1" Background="White" VerticalAlignment="Center"
+                <Border Grid.Column="0" Padding="4" Background="White" VerticalAlignment="Center"
                         BorderBrush="{DynamicResource BlackBrush}" BorderThickness="1">
                         <Image Source="Resources/MpDimLineJustif_32x32.png" Stretch="None"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
