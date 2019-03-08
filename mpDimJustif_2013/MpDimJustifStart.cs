@@ -12,7 +12,7 @@
         [CommandMethod("ModPlus", "mpDimJustif", CommandFlags.Modal)]
         public void StartFunction()
         {
-            Statistic.SendCommandStarting(new Interface());
+            Statistic.SendCommandStarting(new ModPlusConnector());
             if (_mpDimJustif == null)
             {
                 _mpDimJustif = new MpDimJustif();

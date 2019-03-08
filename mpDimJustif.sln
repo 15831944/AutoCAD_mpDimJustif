@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2018", "mpDimJu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2019", "mpDimJustif_2019\mpDimJustif_2019.csproj", "{0E058214-3A95-46B2-AA11-CAF167AA6635}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpDimJustif_2020", "mpDimJustif_2020\mpDimJustif_2020.csproj", "{9880C935-AACF-488D-90CE-EC8BBEEEA078}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E058214-3A95-46B2-AA11-CAF167AA6635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9880C935-AACF-488D-90CE-EC8BBEEEA078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9880C935-AACF-488D-90CE-EC8BBEEEA078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9880C935-AACF-488D-90CE-EC8BBEEEA078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9880C935-AACF-488D-90CE-EC8BBEEEA078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
