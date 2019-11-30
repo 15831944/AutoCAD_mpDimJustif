@@ -9,6 +9,7 @@
     public class MpDimJustifStart
     {
         MpDimJustif _mpDimJustif;
+
         [CommandMethod("ModPlus", "mpDimJustif", CommandFlags.Modal)]
         public void StartFunction()
         {

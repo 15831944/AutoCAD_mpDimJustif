@@ -37,22 +37,26 @@
             {
                 BasePoint = _line.StartPoint,
                 UseBasePoint = true,
-                UserInputControls = (UserInputControls.Accept3dCoordinates
-                                     | UserInputControls.NoZeroResponseAccepted
-                                     | UserInputControls.AcceptOtherInputString
-                                     | UserInputControls.NoNegativeResponseAccepted)
+                UserInputControls = 
+                    UserInputControls.Accept3dCoordinates |
+                    UserInputControls.NoZeroResponseAccepted |
+                    UserInputControls.AcceptOtherInputString |
+                    UserInputControls.NoNegativeResponseAccepted
             };
             var rs = prompts.AcquirePoint(jppo);
             _currentPoint = rs.Value;
-            if (rs.Status != PromptStatus.OK) return SamplerStatus.Cancel;
+            if (rs.Status != PromptStatus.OK)
+                return SamplerStatus.Cancel;
             if (CursorHasMoved())
             {
                 _prevPoint = _currentPoint;
                 return SamplerStatus.OK;
             }
+
             return SamplerStatus.NoChange;
         }
 
+        /// <inheritdoc />
         protected override bool WorldDraw(WorldDraw draw)
         {
             _line.StartPoint = _startPoint;
@@ -78,9 +82,12 @@
                     {
                         var copyDimStretchPoints = new Point3dCollection();
                         rotatedDimension.GetStretchPoints(copyDimStretchPoints);
-                        rotatedDimension.MoveStretchPointsAt(new IntegerCollection { 0 }, copyDimStretchPoints[0].GetVectorTo(intersectPoints[0]));
-                        rotatedDimension.MoveStretchPointsAt(new IntegerCollection { 1 }, copyDimStretchPoints[1].GetVectorTo(intersectPoints[1]));
-                        _dimensions[i] = new Tuple<ObjectId, Dimension, Point3d, Point3d>(tuple.Item1, tuple.Item2, rotatedDimension.XLine1Point, rotatedDimension.XLine2Point);
+                        rotatedDimension.MoveStretchPointsAt(
+                            new IntegerCollection { 0 }, copyDimStretchPoints[0].GetVectorTo(intersectPoints[0]));
+                        rotatedDimension.MoveStretchPointsAt(
+                            new IntegerCollection { 1 }, copyDimStretchPoints[1].GetVectorTo(intersectPoints[1]));
+                        _dimensions[i] = new Tuple<ObjectId, Dimension, Point3d, Point3d>(
+                            tuple.Item1, tuple.Item2, rotatedDimension.XLine1Point, rotatedDimension.XLine2Point);
                         draw.Geometry.Draw(tuple.Item2);
                     }
 

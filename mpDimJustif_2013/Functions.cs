@@ -38,11 +38,11 @@
                     if (ppr.Status != PromptStatus.OK)
                         return;
 
-                    List<Tuple<ObjectId, Dimension, Point3d>> dimensions = new List<Tuple<ObjectId, Dimension, Point3d>>();
+                    var dimensions = new List<Tuple<ObjectId, Dimension, Point3d>>();
 
                     foreach (var objectId in psr.Value.GetObjectIds())
                     {
-                        using (Dimension dimension = objectId.Open(OpenMode.ForWrite) as Dimension)
+                        using (var dimension = objectId.Open(OpenMode.ForWrite) as Dimension)
                         {
                             if (dimension != null && (dimension is RotatedDimension || dimension is AlignedDimension))
                             {
@@ -59,10 +59,10 @@
                     var jig = new DimLineJustifyJig();
                     var rs = jig.StartJig(ppr.Value.TransformBy(ed.CurrentUserCoordinateSystem), dimensions);
 
-                    bool changePoints = rs.Status == PromptStatus.OK;
+                    var changePoints = rs.Status == PromptStatus.OK;
                     foreach (var tuple in dimensions)
                     {
-                        using (Dimension dimension = tuple.Item1.Open(OpenMode.ForWrite) as Dimension)
+                        using (var dimension = tuple.Item1.Open(OpenMode.ForWrite) as Dimension)
                         {
                             if (dimension != null)
                             {
@@ -77,7 +77,6 @@
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -110,11 +109,11 @@
                     if (ppr.Status != PromptStatus.OK)
                         return;
 
-                    List<Tuple<ObjectId, Dimension, Point3d, Point3d>> dimensions = new List<Tuple<ObjectId, Dimension, Point3d, Point3d>>();
+                    var dimensions = new List<Tuple<ObjectId, Dimension, Point3d, Point3d>>();
 
                     foreach (var objectId in psr.Value.GetObjectIds())
                     {
-                        using (Dimension dimension = objectId.Open(OpenMode.ForWrite) as Dimension)
+                        using (var dimension = objectId.Open(OpenMode.ForWrite) as Dimension)
                         {
                             if (dimension != null && dimension is RotatedDimension)
                             {
@@ -131,10 +130,10 @@
                     var jig = new DimExtLineJustifyJig();
                     var rs = jig.StartJig(ppr.Value.TransformBy(ed.CurrentUserCoordinateSystem), dimensions);
 
-                    bool changePoints = rs.Status == PromptStatus.OK;
+                    var changePoints = rs.Status == PromptStatus.OK;
                     foreach (var tuple in dimensions)
                     {
-                        using (Dimension dimension = tuple.Item1.Open(OpenMode.ForWrite) as Dimension)
+                        using (var dimension = tuple.Item1.Open(OpenMode.ForWrite) as Dimension)
                         {
                             if (dimension != null)
                             {
@@ -147,7 +146,6 @@
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex)

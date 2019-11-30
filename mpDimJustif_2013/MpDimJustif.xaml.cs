@@ -17,6 +17,7 @@
         {
             Focus();
         }
+
         private void MetroWindow_MouseLeave(object sender, MouseEventArgs e)
         {
             Autodesk.AutoCAD.Internal.Utils.SetFocusToDwgView();

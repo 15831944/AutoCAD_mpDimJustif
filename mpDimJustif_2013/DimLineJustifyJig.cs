@@ -37,19 +37,21 @@
             {
                 BasePoint = _line.StartPoint,
                 UseBasePoint = true,
-                UserInputControls = (UserInputControls.Accept3dCoordinates
+                UserInputControls = UserInputControls.Accept3dCoordinates
                                      | UserInputControls.NoZeroResponseAccepted
                                      | UserInputControls.AcceptOtherInputString
-                                     | UserInputControls.NoNegativeResponseAccepted)
+                                     | UserInputControls.NoNegativeResponseAccepted
             };
             var rs = prompts.AcquirePoint(jppo);
             _currentPoint = rs.Value;
-            if (rs.Status != PromptStatus.OK) return SamplerStatus.Cancel;
+            if (rs.Status != PromptStatus.OK)
+                return SamplerStatus.Cancel;
             if (CursorHasMoved())
             {
                 _prevPoint = _currentPoint;
                 return SamplerStatus.OK;
             }
+
             return SamplerStatus.NoChange;
         }
 
@@ -68,6 +70,7 @@
                     _dimensions[i] = new Tuple<ObjectId, Dimension, Point3d>(tuple.Item1, tuple.Item2, newDimLinePoint);
                     draw.Geometry.Draw(tuple.Item2);
                 }
+
                 if (tuple.Item2 is AlignedDimension alignedDimension)
                 {
                     var newDimLinePoint = _line.GetClosestPointTo(alignedDimension.DimLinePoint, true);
